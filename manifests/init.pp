@@ -14,6 +14,7 @@ class postgresql {
       case $lsbdistcodename {
         lucid :  { include postgresql::ubuntu::v8-4 }
         maverick :  { include postgresql::ubuntu::v8-4 }
+        precise : { include postgresql::ubuntu::v9-1 }
         default: { fail "postgresql not available for ${operatingsystem}/${lsbdistcodename}"}
       }
     }
@@ -47,6 +48,18 @@ class postgresql::v8-4 {
         lucid :  { include postgresql::ubuntu::v8-4 }
         maverick :  { include postgresql::ubuntu::v8-4 }
         default: { fail "postgresql 8.4 not available for ${operatingsystem}/${lsbdistcodename}"}
+      }
+    }
+    default: { notice "Unsupported operatingsystem ${operatingsystem}" }
+  }
+}
+
+class postgresql::v9-1 {
+  case $operatingsystem {
+    Ubuntu: {
+      case $lsbdistcodename {
+        precise : { include postgresql::ubuntu::v9-1 }
+        default: { fail "postgresql 9.1 not available for ${operatingsystem}/${lsbdistcodename}"}
       }
     }
     default: { notice "Unsupported operatingsystem ${operatingsystem}" }
