@@ -17,6 +17,8 @@ class postgresql::ubuntu::v9-1 inherits postgresql::ubuntu::base {
     default => $postgresql_data_dir,
   }
 
+  case $lsbdistcodename {
+
     'precise': {
       package {[
         "libpq-dev",
